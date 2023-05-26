@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject();
   medalsCount!: number[];
   labels!: string[];
-  numberOfJOs!: number;
-  numberOfCountries!: number;
+  joCounter!: number;
+  countryCounter!: number;
   data: any;
   options: any;
 
@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.olympics$.pipe(takeUntil(this.destroy$)).subscribe({
       next: (object: Olympic[]) => {
         console.log(object);
-        this.numberOfJOs = this.getNumberOfJOs(object);
-        this.numberOfCountries = object.length;
+        this.joCounter = this.getNumberOfJOs(object);
+        this.countryCounter = object.length;
         this.labels = this.getLabels(object);
         this.medalsCount = this.getMedalsCount(object);
         this.data = this.getData(this.labels, this.medalsCount);
