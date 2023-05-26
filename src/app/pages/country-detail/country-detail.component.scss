@@ -1,0 +1,33 @@
+.container {
+  margin: auto;
+}
+
+.title {
+    text-align: center;
+    background-color: #0D98BA;
+    color: white; 
+    border-radius: 25px;
+} 
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  text-align: center;
+  border: 2px solid #0D98BA; 
+  border-radius: 25px;
+  height: fit-content;
+  margin: 5px; 
+}
+
+.bottom {
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+}
