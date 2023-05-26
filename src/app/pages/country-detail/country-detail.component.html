@@ -1,1 +1,24 @@
-<p>country-detail works!</p>
+<div class="container">
+    <span class="pi pi-arrow-circle-left text-2xl lg:text-4xl transition-colors transition-duration-500 hover:text-purple-400" (click)="goBack()"> Go back</span>
+    <div class="title">
+      <h1>{{getCountryName()}}</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>Number of Entries</p>
+        <p> <b> {{getNbOfEntries()}} </b></p>
+    </div>
+      <div class="col">
+        <p>Number of Medals</p>
+        <p> <b> {{getNbOfMedals()}} </b> </p>
+    </div>
+      <div class="col">
+        <p>Number of Athletes</p>
+        <p> <b> {{getNbOfAthletes()}} </b> </p>
+  
+      </div>
+    </div>
+    <div class="bottom">
+      <p-chart type="line" [data]="basicData" [style]="{'width': '100%'}"></p-chart> 
+    </div>
+  </div>
