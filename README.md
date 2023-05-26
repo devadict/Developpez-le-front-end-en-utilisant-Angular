@@ -1,27 +1,14 @@
 # OlympicGamesStarter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
-
-Don't forget to install your node_modules before starting (`npm install`).
+Bienvenue dans l'application Olympic Games, avant de commencer je vous suggère d'installer Node puis d'exécuter la commande suivante : `npm install`.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Afin de lancer l'application, utiliser la commande `npm run start`.
+Si vous avez le CLI d'Angular, vous pouvez utiliser la commande `ng serve`
 
-## Build
+## Content
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Vous pouvez maintenant voir les détails des différentes participationsn de 5 pays aux jeux olympiques. Vous avez accès aux nombres de médailles par pays, par années ainsi qu'aux nombres de particiaptions.
 
-## Where to start
 
-As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
-
-- `components` folder: contains every reusable components
-- `pages` folder: contains components used for routing
-- `core` folder: contains the business logic (`services` and `models` folders)
-
-I suggest you to start by understanding this starter code. Pay an extra attention to the `app-routing.module.ts` and `olympic.service.ts`.
-
-Once mastered, you should continue by creating the typescript interfaces inside the `models` folder. As you can see I already created two files corresponding to the data included inside the `olympic.json`. With your interfaces, improve the code by replacing every `any` by the corresponding interface.
-
-Good luck!
