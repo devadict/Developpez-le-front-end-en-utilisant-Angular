@@ -4,7 +4,7 @@ import {LineData} from "../../core/models/LineData";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OlympicService} from "../../core/services/olympic.service";
 import { Location } from '@angular/common';
-import { Observable, Subject, of, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -16,6 +16,7 @@ export class CountryDetailComponent implements OnInit, OnDestroy {
 
   olympics$: Observable<Olympic[]> = of([]);
   destroy$: Subject<boolean> = new Subject();
+  hasError$ = new BehaviorSubject<boolean>(false);
 
   countryId!: number;
   country!: Olympic | undefined;
@@ -45,17 +46,14 @@ export class CountryDetailComponent implements OnInit, OnDestroy {
     this.olympics$.pipe(takeUntil(this.destroy$)).subscribe({
       next: (object: Olympic[]) => {
         this.country = object.find((country) => country.id === this.countryId);
-        console.log(this.country);
         if (this.country) {
           this.initChart(this.country);
         }
       },
       error: (msg) => {
-        console.log(msg);
+        this.hasError$.next(true);
       },
-      complete: () => {
-        console.log('Observer got a complete notification');
-      },
+      
     });
   }
 

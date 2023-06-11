@@ -4,7 +4,7 @@ import {Olympic} from "../../core/models/Olympic";
 import {PieData} from "../../core/models/PieData";
 import {Participation} from "../../core/models/Participation";
 import {Router} from "@angular/router";
-import {Subscription, Subject, takeUntil, Observable, of} from "rxjs";
+import {Subscription, Subject, takeUntil, Observable, of, BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   olympics$: Observable<Olympic[]> = of([]);
   destroy$: Subject<boolean> = new Subject();
+  hasError$ = new BehaviorSubject<boolean>(false);
   medalsCount!: number[];
   labels!: string[];
   joCounter!: number;
@@ -41,15 +42,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.olympics$ = this.olympicService.getOlympics();
     this.olympics$.pipe(takeUntil(this.destroy$)).subscribe({
       next: (object: Olympic[]) => {
-        console.log(object);
         this.joCounter = this.getNumberOfJOs(object);
         this.countryCounter = object.length;
         this.labels = this.getLabels(object);
         this.medalsCount = this.getMedalsCount(object);
         this.data = this.getData(this.labels, this.medalsCount);
     },
-      error: (error: Error) => console.error(error),
-      complete: () => console.log('Observer got a complete notification'),
+      error: (error: Error) => this.hasError$.next(true),
     });
   }
 
