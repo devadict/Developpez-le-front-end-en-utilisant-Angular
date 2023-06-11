@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OlympicService} from 'src/app/core/services/olympic.service';
 import {Olympic} from "../../core/models/Olympic";
+import {PieData} from "../../core/models/PieData";
 import {Participation} from "../../core/models/Participation";
 import {Router} from "@angular/router";
 import {Subscription, Subject, takeUntil, Observable, of} from "rxjs";
@@ -16,10 +17,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject();
   medalsCount!: number[];
   labels!: string[];
-  numberOfJOs!: number;
-  numberOfCountries!: number;
-  data: any;
-  options: any;
+  joCounter!: number;
+  countryCounter!: number;
+  data!: PieData;
 
 
   constructor(private olympicService: OlympicService,
@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.olympics$.pipe(takeUntil(this.destroy$)).subscribe({
       next: (object: Olympic[]) => {
         console.log(object);
-        this.numberOfJOs = this.getNumberOfJOs(object);
-        this.numberOfCountries = object.length;
+        this.joCounter = this.getNumberOfJOs(object);
+        this.countryCounter = object.length;
         this.labels = this.getLabels(object);
         this.medalsCount = this.getMedalsCount(object);
         this.data = this.getData(this.labels, this.medalsCount);
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .map((value) => value.reduce((prev, current) => current.medalsCount + prev, 0));
   }
 
-  getData(labels: string[], medalsCount: number[]): any {
+  getData(labels: string[], medalsCount: number[]): PieData {
     return {
       labels: labels,
       datasets: [

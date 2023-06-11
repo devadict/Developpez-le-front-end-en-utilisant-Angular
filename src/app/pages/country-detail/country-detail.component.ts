@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Olympic} from "../../core/models/Olympic";
+import {LineData} from "../../core/models/LineData";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OlympicService} from "../../core/services/olympic.service";
 import { Location } from '@angular/common';
@@ -19,7 +20,7 @@ export class CountryDetailComponent implements OnInit, OnDestroy {
   countryId!: number;
   country!: Olympic | undefined;
 
-  basicData: any;
+  basicData!: LineData;
 
   constructor(
     private location: Location,
