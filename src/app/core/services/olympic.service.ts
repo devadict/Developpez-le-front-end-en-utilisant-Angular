@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, map, Observable, of} from 'rxjs';
+import {BehaviorSubject, map, Observable, of, Subject} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Olympic} from "../models/Olympic";
 import {Router} from "@angular/router";
@@ -12,6 +12,8 @@ export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
   private olympics$ = new BehaviorSubject<Olympic[]>([]);
   private hasError$ = new BehaviorSubject<boolean>(false);
+  private destroy$: Subject<boolean> = new Subject();
+
 
   constructor(private http: HttpClient,
               private router: Router) {
