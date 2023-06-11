@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Olympic} from "../../core/models/Olympic";
-import {LineData} from "../../core/models/LineData";
+import { LineData } from "../../core/models/LineData";
+import { DataTitleComponent } from 'src/app/core/components/data-title/data-title.component';
+import { MedalsInfoComponent } from 'src/app/core/components/medals-info/medals-info.component';
 import {ActivatedRoute, Router} from "@angular/router";
 import {OlympicService} from "../../core/services/olympic.service";
 import { Location } from '@angular/common';
@@ -13,6 +15,9 @@ import { BehaviorSubject, Observable, Subject, of, takeUntil } from 'rxjs';
   styleUrls: ['./country-detail.component.scss']
 })
 export class CountryDetailComponent implements OnInit, OnDestroy {
+  dataTitleComponent: DataTitleComponent = new DataTitleComponent();
+  medalsInfoComponent: MedalsInfoComponent = new MedalsInfoComponent();
+
 
   olympics$: Observable<Olympic[]> = of([]);
   destroy$: Subject<boolean> = new Subject();

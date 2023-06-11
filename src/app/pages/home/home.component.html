@@ -1,14 +1,8 @@
 <div class="container">
     <app-data-title title="Medals per country"></app-data-title>
   <div class="row">
-    <div class="col">
-      <p> Number of JOs</p>
-      <p> <b> {{joCounter}} </b> </p>
-    </div>
-    <div class="col">
-      <p> Number of countries</p>
-      <p><b> {{countryCounter}} </b> </p>
-    </div>
+    <app-medals-info name="Number of JOs" info="{{joCounter}}"></app-medals-info>
+    <app-medals-info name="Number of Countries" info="{{countryCounter}}"></app-medals-info>
   </div>
   <div class="bottom">
     <p-chart type="pie" [data]="data"  (onDataSelect)="onSelect($event)"></p-chart>

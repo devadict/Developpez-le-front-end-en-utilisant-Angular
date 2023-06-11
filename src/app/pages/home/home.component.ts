@@ -3,6 +3,7 @@ import {OlympicService} from 'src/app/core/services/olympic.service';
 import {Olympic} from "../../core/models/Olympic";
 import { PieData } from "../../core/models/PieData";
 import { DataTitleComponent } from 'src/app/core/components/data-title/data-title.component';
+import { MedalsInfoComponent } from 'src/app/core/components/medals-info/medals-info.component';
 import {Participation} from "../../core/models/Participation";
 import {Router} from "@angular/router";
 import {Subscription, Subject, takeUntil, Observable, of, BehaviorSubject} from "rxjs";
@@ -14,6 +15,7 @@ import {Subscription, Subject, takeUntil, Observable, of, BehaviorSubject} from 
 })
 export class HomeComponent implements OnInit, OnDestroy {
   dataTitleComponent: DataTitleComponent = new DataTitleComponent();
+  medalsInfoComponent: MedalsInfoComponent = new MedalsInfoComponent();
 
   olympics$: Observable<Olympic[]> = of([]);
   destroy$: Subject<boolean> = new Subject();
