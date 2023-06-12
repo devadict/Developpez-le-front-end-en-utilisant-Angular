@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, take } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { OlympicService } from './core/services/olympic.service';
 
 @Component({
@@ -12,8 +12,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private olympicService: OlympicService) {}
 
   ngOnInit(): void {
-    this.olympicService.loadInitialData().pipe(take(1)).subscribe();
-  }
+    this.olympicService.loadInitialData().pipe(takeUntil(this.destroy$)).subscribe();  }
 
   ngOnDestroy(): void {
   this.destroy$.next(true)
